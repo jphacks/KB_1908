@@ -1,6 +1,7 @@
 var image;
 
 window.onload = () => {
+
   var video = document.getElementById('camera');
   var canvas = document.getElementById('picture');
   canvas.style.display ="none";
@@ -9,8 +10,8 @@ window.onload = () => {
   var constraints = {
     audio: false,
     video: {
-      width: 426,
-      height: 240,
+      width: 300,
+      height: 200,
       facingMode: "user"   // フロントカメラ　後ろは"environment"
     }
   };
