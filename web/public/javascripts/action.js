@@ -8,8 +8,8 @@ window.onload = () => {
   var constraints = {
     audio: false,
     video: {
-      width: 800,
-      height: 600,
+      width: 300,
+      height: 200,
       facingMode: "user"   // フロントカメラ　後ろは"environment"
     }
   };
