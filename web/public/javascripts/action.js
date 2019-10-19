@@ -3,13 +3,14 @@ var image;
 window.onload = () => {
   var video = document.getElementById('camera');
   var canvas = document.getElementById('picture');
+  canvas.style.display ="none";
   var se = document.getElementById('se');
 
   var constraints = {
     audio: false,
     video: {
-      width: 300,
-      height: 200,
+      width: 426,
+      height: 240,
       facingMode: "user"   // フロントカメラ　後ろは"environment"
     }
   };
