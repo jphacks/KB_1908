@@ -10,7 +10,7 @@ var fs = require("fs");
 
 const vision = require('node-cloud-vision-api')
 
-var facialExpression = [];
+
 var categories = ['joy', 'sorrow', 'anger', 'surprise']
 var result = { "joy": 0,"sorrow" :0,"anger":0,"surprise":0}
 // init with auth
@@ -35,7 +35,7 @@ app.post('/postImg', function (request, response) {
   var img = JSON.stringify(data.image);
   
 //   console.log(img);
-
+  var facialExpression = [];
     var decode = new Buffer(img, 'base64');
     
     const req = new vision.Request({

@@ -20,14 +20,21 @@
           
   
   <ul id="output"></ul>
+  <!-- ボタン -->
+  <div class="video pt-1">
+    <p class="lead">
+      <button type="button" id="return" class="btn btn-lg start_btn" style="width:300px; height:70px; font-size:30; color: #696969; background-color:#8DCFBF;">戻りーの</button>
+    </p>
+  </div>
   </body>
   <script>
 
   $(function(){
+    var facialExpression=[]
     $.getJSON('/result' , function(data) {
       console.log(data);
       var categories  = ["モンスター","レッドブル","BB","ジャスミン","オレンジ","ピーチ"]
-      var facialExpression=[]
+      
       $("#output").append("<li>" +data.joy + "</li>");
       $("#output").append("<li>" + data.sorrow + "</li>");
       $("#output").append("<li>" + data.anger + "</li>");
@@ -68,7 +75,13 @@ function setjuice(face) {
     }
     return  result;
 }
-
+document.getElementById('return').addEventListener('click', () => {
+    
+    facialExpression = []
+    window.location.href = '../';
+    console.log(facialExpression)
+    
+  });
 </script>
   <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
