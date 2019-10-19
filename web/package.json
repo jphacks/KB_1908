@@ -6,9 +6,12 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "@google-cloud/vision": "^1.5.0",
+    "aws-sdk": "^2.553.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
-    "morgan": "~1.9.0"
+    "morgan": "~1.9.0",
+    "obniz": "^2.4.0"
   }
 }
