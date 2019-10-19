@@ -39,9 +39,12 @@ window.onload = () => {
     image = canvas.toDataURL('image/png');
     image = image.split(",")[1];
     post();
-    window.location.href = '../result.html';
+    setTimeout("result()", 3000);
   });
 };
+function result() {
+  window.location.href = '../result.html';
+}
 
 function post(){
   $.ajax({
