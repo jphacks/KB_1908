@@ -39,11 +39,12 @@ window.onload = () => {
     image = canvas.toDataURL('image/png');
     image = image.split(",")[1];
     post();
-    setTimeout("result()", 3000);
+    // setTimeout("result()", 3000);
+    result()
   });
 };
 function result() {
-  window.location.href = '../result.html';
+  window.location.href = '../video.html';
 }
 
 function post(){
