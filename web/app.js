@@ -12,6 +12,7 @@ const vision = require('node-cloud-vision-api')
 
 var facialExpression = [];
 var categories = ['joy', 'sorrow', 'anger', 'surprise']
+var result = { "joy": 0,"sorrow" :0,"anger":0,"surprise":0}
 // init with auth
 vision.init({
     auth: 'AIzaSyCAdkejP6GBbOP1iC0Kq5g8Lhq6R7vf4uY'
@@ -71,6 +72,11 @@ app.post('/postImg', function (request, response) {
         for (var k = 0; k < facialExpression.length; k++) {
             console.log(categories[k] + ":" + facialExpression[k])
         }
+        result.joy = facialExpression[0]
+        result.sorrow = facialExpression[1]
+        result.anger = facialExpression[2]
+        result.surprise = facialExpression[3]
+
 
     }, (e) => {
         console.log('Error: ', e)
@@ -88,6 +94,10 @@ app.post('/postImg', function (request, response) {
     
 });
 
+app.get('/result', (req, res, next) => {
+        res.json(result);
+    
+});
 
 
 module.exports = app;
