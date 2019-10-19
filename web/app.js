@@ -1,4 +1,6 @@
 var express = require('express');
+var gene = require('./juiceGenerator');
+
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
@@ -19,6 +21,7 @@ vision.init({
 })
 
 var app = express();
+
 
 app.use(logger('dev'));
 app.use(express.json({limit: '50mb'}));
@@ -76,7 +79,8 @@ app.post('/postImg', function (request, response) {
     result.sorrow = facialExpression[1]
     result.anger = facialExpression[2]
     result.surprise = facialExpression[3]
-
+    
+      
 
     }, (e) => {
         console.log('Error: ', e)
@@ -91,7 +95,7 @@ app.post('/postImg', function (request, response) {
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
   response.end()
     
-    
+  gene.brewEV();
 });
 
 app.get('/result', (req, res, next) => {
