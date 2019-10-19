@@ -3,13 +3,14 @@ var image;
 window.onload = () => {
   var video = document.getElementById('camera');
   var canvas = document.getElementById('picture');
+  canvas.style.display ="none";
   var se = document.getElementById('se');
 
   var constraints = {
     audio: false,
     video: {
-      width: 800,
-      height: 600,
+      width: 426,
+      height: 240,
       facingMode: "user"   // フロントカメラ　後ろは"environment"
     }
   };
@@ -37,10 +38,12 @@ window.onload = () => {
     image = canvas.toDataURL('image/png');
     image = image.split(",")[1];
     post();
-    window.location.href = '../result.html';
+    setTimeout("result()", 3000);
   });
 };
-
+function result() {
+  window.location.href = '../result.html';
+}
 function post(){
   $.ajax({
     url: '/postImg',

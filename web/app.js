@@ -58,15 +58,15 @@ app.post('/postImg', function (request, response) {
             if (facialExpression[k] == 'UNKNOWN') {
                 facialExpression[k] = 0;
             } else if (facialExpression[k] == 'VERY_UNLIKELY') {
-                facialExpression[k] = 2;
+                facialExpression[k] = 1;
             } else if (facialExpression[k] == 'UNLIKELY') {
-                facialExpression[k] = 4;
+                facialExpression[k] = 2;
             } else if (facialExpression[k] == 'POSSIBLE') {
-                facialExpression[k] = 6;
+                facialExpression[k] = 3;
             } else if (facialExpression[k] == 'LIKELY') {
-                facialExpression[k] = 8;
+                facialExpression[k] = 4;
             } else if (facialExpression[k] == 'VERY_LIKELY') {
-                facialExpression[k] = 10;
+                facialExpression[k] = 5;
             }
         }
         for (var k = 0; k < facialExpression.length; k++) {

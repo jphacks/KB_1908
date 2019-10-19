@@ -6,3 +6,56 @@ body {
 a {
   color: #00B7FF;
 }
+#resultTable {
+  width: 40%;
+  float: right;
+  margin: 10px;
+}
+
+#chartArea {
+  border: 6px solid #003A76;
+  border-radius: 4px;
+  width: 40%;
+  height: 300px;
+  margin: 10px;
+  float: left;
+}
+
+#textTable {
+  width: 40%;
+  float: right;
+  margin: 10px;
+}
+
+/* 初期状態では結果部分が表示されないようにするための記述 */
+.hidden {
+  display: none;
+}
+h1.fintitle {
+  position: absolute;
+  height: 32px;
+  left: 296px;
+  top: 94px;
+  ​font-family: Unica One;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 64px;
+  line-height: 76px;
+  text-align: center;
+  ​color: #343434;
+  ​mix-blend-mode: normal;
+}
+​div.result {
+  position: absolute;
+  width: 508px;
+  height: 45px;
+  left: 154px;
+  top: 220px;
+  ​font-family: Unica One;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 36px;
+  line-height: 43px;
+  ​color: #343434;
+  ​mix-blend-mode: normal;
+}
