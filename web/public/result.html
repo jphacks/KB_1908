@@ -4,77 +4,74 @@
   <title>result</title>
   <link rel="stylesheet" href="/stylesheets/style.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Unica+One" rel="stylesheet">
   <meta name="viewport" content="width=device-width,minimal-ui">
   <style>
     body {background-image: url("/image/bg3.png"); }
     html,body{
       overflow: hidden;
+      font-family: "Unica One";
+      font-style: normal;
+      font-weight: normal;
+    }
+    .return{
+      text-align: center;
     }
   </style>
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <body>
-  <h1 class="fintitle">Your drink is...</h1>
-  <ul id="result"></ul>
+  <div class="title">
+      <h1 class="text-center my-5" style="font-size: 60px;">Your drink is...</h1>
+      <ul id="name"></ul>
+      <ul id="explanation"></ul>
+      <div class="pl-5 pt-5">
+        <div class="pl-5">
           
+        </div>
+      </div>
+    </div>
   
-  <ul id="output"></ul>
   <!-- ボタン -->
   <div class="video pt-1">
-    <p class="lead">
-      <button type="button" id="return" class="btn btn-lg start_btn" style="width:300px; height:70px; font-size:30; color: #696969; background-color:#8DCFBF;">戻りーの</button>
+    <p class="return">
+      <button type="button" id="return" class="btn btn-lg start_btn" style="width:300px; height:70px; font-size:30; color: #696969; background-color:#8DCFBF;">HOME</button>
     </p>
   </div>
   </body>
   <script>
+    var string;
+    var string2;
 
   $(function(){
     var facialExpression=[]
+    var string;
     $.getJSON('/result' , function(data) {
       console.log(data);
-      var categories  = ["モンスター","レッドブル","BB","ジャスミン","オレンジ","ピーチ"]
-      
-      $("#output").append("<li>" +data.joy + "</li>");
-      $("#output").append("<li>" + data.sorrow + "</li>");
-      $("#output").append("<li>" + data.anger + "</li>");
-      $("#output").append("<li>" + data.surprise + "</li>");
-      
-      facialExpression.push(data.joy)
-      facialExpression.push(data.sorrow)
-      facialExpression.push(data.anger)
-      facialExpression.push(data.surprise)
-      //facialExpression[0] = data.joy
-      //facialExpression[1] = data.sorrow
-      //facialExpression[2] =  data.anger
-      //facialExpression[3] = data.surprise
-      //チャート描画の処理
-      
-      var result = setjuice(facialExpression)
-      for (  var i = 0;  i < 6;  i++  ) {
-      $("#result").append("<li>" +categories[i]+":"+result[i]+ "</li>");
-        // 繰り返し処理
-    }
+      // var categories  = ["モンスター","レッドブル","BB","ジャスミン","オレンジ","ピーチ"]
+
+      if(data.joy > data.sorrow && data.joy > data.anger && data.joy > data.surprise){
+        string = "「太陽のように眩しいオレンジの気持ち」"
+        string2 = "いいことがあった日は，このオレンジジュースとともにいっぱい笑いましょう!!"
+      }else if(data.sorrow > data.joy && data.sorrow > data.anger && data.sorrow > data.surprise){
+        string = "「体力回復ドリンク」"
+        string2 = "なにかありましたか？問題を解決するには体力が必要です<br>そんなあなたには栄養補給ができるドリンクをどうぞ"
+      }else if(data.anger > data.joy && data.anger > data.sorrow && data.anger > data.surprise){
+        string = "「ゆるりゆるりと休息のジャスミンの香り」"
+        string2 = "うまく行かなかった日は，ジャスミンティーでほっこりと<br>心身を休めることも重要です"
+      }else if(data.surprise > data.joy && data.surprise > data.sorrow && data.surprise > data.anger){
+        string = "「ひらめきを加速するカフェインのちから」"
+        string2 = "なにか驚きの出来事があったようですね！そんなあなたへ，エナジードリンク！"
+      }else{
+        string = "「元気をつけようスペシャルドリンク」"
+        string2 = "あなたの感情は起伏が無いみたい…お疲れですか？<br>そんなあなたへは全ての種類が入ったドリンクをどうぞ❤"
+      }
+      $("#name").append("<h3 class=\"text-center my-5\" id=\"name\" style=\"font-size: 45px;\">"+string+"</h3>");
+      $("#explanation").append("<h5 class=\"text-center my-5\" id=\"name\">"+string2+"</h5>");
   });
 });
-//得られた結果を画面に表示する
-function setjuice(face) {
-    var max = face.indexOf(Math.max(...face))
-    console.log(max)
-    if(max == 0){
-      result = [60,30,10,0,0,0]
-    }
-    else if(max ==1){
-      result = [20,70,10,0,0,0]
-    }
-    else if(max ==2){
-      result = [10,10,80,0,0,0]
-    }
-    else if(max ==3){
-      result = [0,10,10,60,20,0]
-    }
-    return  result;
-}
+
 document.getElementById('return').addEventListener('click', () => {
     
     facialExpression = []
