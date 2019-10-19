@@ -8,8 +8,8 @@ window.onload = () => {
   var constraints = {
     audio: false,
     video: {
-      width: 300,
-      height: 200,
+      width: 800,
+      height: 600,
       facingMode: "user"   // フロントカメラ　後ろは"environment"
     }
   };
@@ -37,6 +37,7 @@ window.onload = () => {
     image = canvas.toDataURL('image/png');
     image = image.split(",")[1];
     post();
+    window.location.href = '../result.html';
   });
 };
 
