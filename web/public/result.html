@@ -20,6 +20,7 @@
   </style>
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="/javascripts/juiceGenerator.js"></script>
 
 <body>
   <div class="title">
@@ -43,14 +44,12 @@
   <script>
     var string;
     var string2;
-
   $(function(){
     var facialExpression=[]
     var string;
     $.getJSON('/result' , function(data) {
       console.log(data);
       // var categories  = ["モンスター","レッドブル","BB","ジャスミン","オレンジ","ピーチ"]
-
       if(data.joy > data.sorrow && data.joy > data.anger && data.joy > data.surprise){
         string = "「太陽のように眩しいオレンジの気持ち」"
         string2 = "いいことがあった日は，このオレンジジュースとともにいっぱい笑いましょう!!"
@@ -70,8 +69,8 @@
       $("#name").append("<h3 class=\"text-center my-5\" id=\"name\" style=\"font-size: 45px;\">"+string+"</h3>");
       $("#explanation").append("<h5 class=\"text-center my-5\" id=\"name\">"+string2+"</h5>");
   });
+  test()
 });
-
 document.getElementById('return').addEventListener('click', () => {
     
     facialExpression = []
