@@ -8,6 +8,15 @@ var usersRouter = require('./routes/users');
 
 var fs = require("fs");
 
+const vision = require('node-cloud-vision-api')
+
+var facialExpression = [];
+var categories = ['joy', 'sorrow', 'anger', 'surprise']
+// init with auth
+vision.init({
+    auth: 'AIzaSyCAdkejP6GBbOP1iC0Kq5g8Lhq6R7vf4uY'
+})
+
 var app = express();
 
 app.use(logger('dev'));
@@ -24,18 +33,61 @@ app.post('/postImg', function (request, response) {
   var data = request.body;
   var img = JSON.stringify(data.image);
   
-  console.log(img);
+//   console.log(img);
 
-  var decode = new Buffer(img,'base64');
+    var decode = new Buffer(img, 'base64');
+    
+    const req = new vision.Request({
+        image: new vision.Image('public/image/face.png'),
+        features: [
+            new vision.Feature('FACE_DETECTION', 1)
+            // new vision.Feature('LABEL_DETECTION', 10),
+        ]
+    })
+    // send single request
+    vision.annotate(req).then((res) => {
+        // handling response
+        facialExpression.push(res.responses[0].faceAnnotations[0].joyLikelihood);
+        facialExpression.push(res.responses[0].faceAnnotations[0].sorrowLikelihood);
+        facialExpression.push(res.responses[0].faceAnnotations[0].angerLikelihood);
+        facialExpression.push(res.responses[0].faceAnnotations[0].surpriseLikelihood);
 
+
+        for (var k = 0; k < facialExpression.length; k++) {
+            if (facialExpression[k] == 'UNKNOWN') {
+                facialExpression[k] = 0;
+            } else if (facialExpression[k] == 'VERY_UNLIKELY') {
+                facialExpression[k] = 2;
+            } else if (facialExpression[k] == 'UNLIKELY') {
+                facialExpression[k] = 4;
+            } else if (facialExpression[k] == 'POSSIBLE') {
+                facialExpression[k] = 6;
+            } else if (facialExpression[k] == 'LIKELY') {
+                facialExpression[k] = 8;
+            } else if (facialExpression[k] == 'VERY_LIKELY') {
+                facialExpression[k] = 10;
+            }
+        }
+        for (var k = 0; k < facialExpression.length; k++) {
+            console.log(categories[k] + ":" + facialExpression[k])
+        }
+
+    }, (e) => {
+        console.log('Error: ', e)
+
+    })
+    
   fs.writeFile('public/image/face.png', decode, function(err) {
     console.log(err);
   });
-
+    
   response.header("Access-Control-Allow-Origin", "*")
-  response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
-  response.end()
+    response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+    response.end()
+    
+    
 });
+
 
 
 module.exports = app;
