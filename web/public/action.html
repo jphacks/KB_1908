@@ -1,13 +1,29 @@
 <html lang="ja">
 
 <head>
-  <title>Cocktail×Teck</title>
+  <title>camera</title>
+  <meta charset="utf-8">
   <link rel="stylesheet" href="/stylesheets/style.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+  
 </head>
 
 <body>
-  <p>action</p>
+  <video id="camera" width="300" height="200"></video>
+  <canvas id="picture" width="300" height="200"></canvas>
+  
+  <!-- ボタン -->
+  <form>
+    <button type="button" id="shutter">シャッター</button>
+  </form>
+
+  <!-- シャッター音 -->
+  <audio id="se" preload="auto">
+    <source src=".mp3" type="audio/mp3">
+  </audio>
+
+  <script src="/javascripts/action.js"></script>
 
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
