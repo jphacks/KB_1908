@@ -80,17 +80,7 @@ app.post('/postImg', function (request, response) {
     result.anger = facialExpression[2]
     result.surprise = facialExpression[3]
     
-    if (data.joy > data.sorrow && data.joy > data.anger && data.joy > data.surprise) {
-      gene.brewEV();
-    } else if (data.sorrow > data.joy && data.sorrow > data.anger && data.sorrow > data.surprise) {
-      gene.brewVO();
-    } else if (data.anger > data.joy && data.anger > data.sorrow && data.anger > data.surprise) {
-      gene.brewJ();
-    } else if (data.surprise > data.joy && data.surprise > data.sorrow && data.surprise > data.anger) {
-      gene.brewO();
-    } else {
-      gene.brewOJEV();
-    }
+    
       
 
     }, (e) => {
@@ -98,8 +88,26 @@ app.post('/postImg', function (request, response) {
 
     })
     
-  fs.writeFile('public/image/face.png', decode, function(err) {
+  fs.writeFile('public/image/face.png', decode, function (err) {
+    
     console.log(err);
+    if (data.joy > data.sorrow && data.joy > data.anger && data.joy > data.surprise) {
+      gene.brewEV();
+      console.log("joy")
+    } else if (data.sorrow > data.joy && data.sorrow > data.anger && data.sorrow > data.surprise) {
+      gene.brewVO();
+      console.log("sorrow")
+    } else if (data.anger > data.joy && data.anger > data.sorrow && data.anger > data.surprise) {
+      gene.brewJ();
+      console.log("anger")
+    } else if (data.surprise > data.joy && data.surprise > data.sorrow && data.surprise > data.anger) {
+      gene.brewO();
+      console.log("surpreise")
+    } else {
+      gene.brewOJEV();
+      console.log("all")
+    }
+    
   });
     
   response.header("Access-Control-Allow-Origin", "*")
