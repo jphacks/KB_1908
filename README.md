@@ -17,10 +17,10 @@
 
 #### 1. 特長1
 顔の表情を撮影し，感情を判断
-[Product Name](photo.png)
+![Product Name](photo.png)
 #### 2. 特長2
 感情によって適切なドリンクを考案
-[Product Name](result.png)
+！[Product Name](result.png)
 #### 3. 特長3
 自動でドリンクを調合し，提供
 
