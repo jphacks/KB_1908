@@ -80,6 +80,17 @@ app.post('/postImg', function (request, response) {
     result.anger = facialExpression[2]
     result.surprise = facialExpression[3]
     
+    if (data.joy > data.sorrow && data.joy > data.anger && data.joy > data.surprise) {
+      gene.brewEV();
+    } else if (data.sorrow > data.joy && data.sorrow > data.anger && data.sorrow > data.surprise) {
+      gene.brewVO();
+    } else if (data.anger > data.joy && data.anger > data.sorrow && data.anger > data.surprise) {
+      gene.brewJ();
+    } else if (data.surprise > data.joy && data.surprise > data.sorrow && data.surprise > data.anger) {
+      gene.brewO();
+    } else {
+      gene.brewOJEV();
+    }
       
 
     }, (e) => {
@@ -95,7 +106,6 @@ app.post('/postImg', function (request, response) {
   response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
   response.end()
     
-  gene.brewEV();
 });
 
 app.get('/result', (req, res, next) => {
