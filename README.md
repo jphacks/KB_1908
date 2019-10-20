@@ -1,6 +1,6 @@
 # MAZERU SAMA
 
-[![Product Name](mazerusama.png)](https://www.youtube.com/watch?v=G5rULR53uMk)
+[![Product Name](mazerusama.png)](https://www.youtube.com/watch?v=bSP8UnAV4Zs)
 
 ## 製品概要
 ### 体力 ✕ Tech
