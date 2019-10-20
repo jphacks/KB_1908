@@ -3,7 +3,7 @@ let obniz = new Obniz("5777-5866");
 
 
 // 弁を開いている単位時間 Unit Time [ms]
-const UT = 2000;
+const UT = 3000;
 
 // OPENの角度
 const ODEG = 0;

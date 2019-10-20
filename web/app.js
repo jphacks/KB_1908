@@ -80,7 +80,23 @@ app.post('/postImg', function (request, response) {
     result.anger = facialExpression[2]
     result.surprise = facialExpression[3]
     
-    
+    if (result.joy > result.sorrow && result.joy > result.anger && result.joy > result.surprise) {
+      gene.brewO();
+      console.log("joy")
+    } else if (result.sorrow > result.joy && result.sorrow > result.anger && result.sorrow > result.surprise) {
+      gene.brewVO();
+      console.log("sorrow")
+    } else if (result.anger > result.joy && result.anger > result.sorrow && result.anger > result.surprise) {
+      gene.brewJ();
+      console.log("anger")
+    } else if (result.surprise > result.joy && result.surprise > result.sorrow && result.surprise > result.anger) {
+      gene.brewEV();
+      console.log("surpreise")
+    } else {
+      gene.brewOJEV();
+      console.log(result);
+      console.log("all")
+    }
       
 
     }, (e) => {
@@ -91,22 +107,7 @@ app.post('/postImg', function (request, response) {
   fs.writeFile('public/image/face.png', decode, function (err) {
     
     console.log(err);
-    if (data.joy > data.sorrow && data.joy > data.anger && data.joy > data.surprise) {
-      gene.brewEV();
-      console.log("joy")
-    } else if (data.sorrow > data.joy && data.sorrow > data.anger && data.sorrow > data.surprise) {
-      gene.brewVO();
-      console.log("sorrow")
-    } else if (data.anger > data.joy && data.anger > data.sorrow && data.anger > data.surprise) {
-      gene.brewJ();
-      console.log("anger")
-    } else if (data.surprise > data.joy && data.surprise > data.sorrow && data.surprise > data.anger) {
-      gene.brewO();
-      console.log("surpreise")
-    } else {
-      gene.brewOJEV();
-      console.log("all")
-    }
+    
     
   });
     
