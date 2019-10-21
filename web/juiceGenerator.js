@@ -9,7 +9,7 @@ let Obniz = require("obniz");
 let obniz = new Obniz("5777-5866");
 
 // 弁を開いている単位時間 Unit Time [ms]
-const UT = 3000;
+const UT = 30000;
 // OPENの角度
 const ODEG = 0;
 // CLOSEの角度
@@ -26,6 +26,10 @@ let srv3;
 
 // 何回目？
 let cnt = 0;
+
+// var ledB = obniz.wired("LED", { anode: 6, cathode: 7 });
+// ledB.on();
+
 
 exports.brewO = function() {
     init();
