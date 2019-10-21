@@ -17,7 +17,7 @@ var categories = ['joy', 'sorrow', 'anger', 'surprise']
 var result = { "joy": 0,"sorrow" :0,"anger":0,"surprise":0}
 // init with auth
 vision.init({
-    auth: 'AIzaSyCAdkejP6GBbOP1iC0Kq5g8Lhq6R7vf4uY'
+    auth: ''
 })
 
 var app = express();
